@@ -22,8 +22,8 @@ module Sidekiq
       @bidkey = "BID-" + @bid.to_s
       @queued_jids = []
       @pending_jids = []
-      @incremental_push = Sidekiq.options.keys.include?(:batch_push_interval)
-      @batch_push_interval = Sidekiq.options[:batch_push_interval]
+      @incremental_push = !Sidekiq[:batch_push_interval].nil?
+      @batch_push_interval = Sidekiq[:batch_push_interval]
     end
 
     def description=(description)
